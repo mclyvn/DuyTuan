@@ -3,19 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profile Trần Duy Tuấn</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <title>Profile Sinh Viên - Trần Duy Tuấn</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
         /* --- CẤU HÌNH GIAO DIỆN DARK MODE --- */
         :root {
-            --bg-color: #121212;       /* Nền đen */
-            --card-bg: #1e1e1e;        /* Nền thẻ xám đậm */
-            --text-color: #e0e0e0;     /* Chữ trắng xám */
-            --primary-color: #bb86fc;  /* Màu tím điểm nhấn (hợp nền tối) */
-            --secondary-color: #03dac6;/* Màu xanh ngọc phụ trợ */
-            --border-color: #333;
+            --bg-color: #121212;
+            --card-bg: #1e1e1e;
+            --text-color: #e0e0e0;
+            --primary-color: #bb86fc;
+            --secondary-color: #03dac6;
+            --highlight-bg: #2d2d2d;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -25,117 +25,137 @@
             background-color: var(--bg-color);
             color: var(--text-color);
             line-height: 1.6;
+            padding-bottom: 50px;
         }
 
         .container {
             width: 95%;
-            max-width: 1000px;
+            max-width: 900px;
             margin: 0 auto;
             padding: 20px;
         }
 
-        h1, h2 { color: #fff; margin-bottom: 20px; text-align: center; }
-        h2 { border-bottom: 2px solid var(--primary-color); display: inline-block; padding-bottom: 5px; }
+        h2 { 
+            color: #fff; 
+            margin: 30px 0 20px 0; 
+            text-align: center; 
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 1.5rem;
+        }
+        h2::after {
+            content: ''; display: block; width: 60px; height: 3px; 
+            background: var(--primary-color); margin: 10px auto;
+        }
         
-        /* --- PHẦN 1: HERO (Ảnh + Tên) --- */
+        /* --- HERO SECTION --- */
         .hero {
             text-align: center;
-            padding: 40px 0;
+            padding: 40px 0 20px 0;
         }
         .avatar {
-            width: 150px;
-            height: 150px;
+            width: 140px;
+            height: 140px;
             border-radius: 50%;
-            border: 4px solid var(--primary-color);
+            border: 3px solid var(--primary-color);
+            padding: 3px; /* Tạo khoảng cách giữa ảnh và viền */
             object-fit: cover;
             margin-bottom: 15px;
+            background: var(--card-bg);
         }
-        .hero h1 { font-size: 2.5rem; margin-bottom: 10px; color: var(--primary-color); }
-        .hero p { font-size: 1.2rem; color: #aaa; }
+        .hero h1 { font-size: 2.2rem; color: #fff; margin-bottom: 5px; }
+        .hero .subtitle { color: var(--secondary-color); font-weight: 500; }
 
-        /* --- PHẦN 2: BẢNG THÔNG TIN CÁ NHÂN --- */
-        .personal-info-table {
+        /* --- BẢNG THÔNG TIN CÁ NHÂN (STYLE MỚI) --- */
+        .info-table {
             width: 100%;
-            border-collapse: collapse;
-            background-color: var(--card-bg);
-            margin: 20px 0;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
-        }
-        .personal-info-table th, .personal-info-table td {
-            padding: 15px;
-            text-align: left;
-            border-bottom: 1px solid var(--border-color);
-        }
-        .personal-info-table th {
-            width: 30%;
-            color: var(--secondary-color);
-            font-weight: bold;
-            background-color: rgba(255,255,255,0.05);
+            border-collapse: separate; /* Tách rời các ô */
+            border-spacing: 0 10px; /* Khoảng cách giữa các dòng */
         }
         
-        /* --- PHẦN 3: LỊCH HỌC (THEO ẢNH) --- */
+        .info-table tr {
+            background-color: var(--card-bg);
+            transition: transform 0.2s, background-color 0.2s;
+        }
+
+        .info-table tr:hover {
+            transform: scale(1.01);
+            background-color: var(--highlight-bg);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+
+        /* Bo tròn góc cho từng dòng */
+        .info-table td:first-child { border-top-left-radius: 8px; border-bottom-left-radius: 8px; }
+        .info-table td:last-child { border-top-right-radius: 8px; border-bottom-right-radius: 8px; }
+
+        .info-table td {
+            padding: 15px 20px;
+            vertical-align: middle;
+        }
+
+        /* Cột tiêu đề (Icon + Tên) */
+        .info-label {
+            width: 35%;
+            color: #aaa;
+            font-weight: 500;
+            border-left: 4px solid var(--primary-color); /* Viền màu bên trái */
+        }
+
+        .info-label i {
+            width: 25px;
+            color: var(--primary-color);
+            margin-right: 10px;
+            text-align: center;
+        }
+
+        /* Cột nội dung */
+        .info-value {
+            font-weight: bold;
+            color: #fff;
+        }
+        
+        /* --- LỊCH HỌC GRID --- */
         .schedule-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 20px;
-            margin-top: 20px;
         }
         .day-card {
             background-color: var(--card-bg);
-            border-radius: 10px;
+            border-radius: 12px;
             padding: 20px;
-            border-left: 5px solid var(--primary-color);
+            border: 1px solid #333;
         }
         .day-header {
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             font-weight: bold;
-            color: #fff;
+            color: var(--secondary-color);
             margin-bottom: 15px;
-            text-transform: uppercase;
-        }
-        .subject-item {
-            margin-bottom: 15px;
-            padding-bottom: 10px;
-            border-bottom: 1px solid #333;
-        }
-        .subject-item:last-child { border-bottom: none; }
-        .subject-name { font-weight: bold; color: var(--secondary-color); font-size: 1.1rem; }
-        .subject-detail { font-size: 0.9rem; color: #ccc; margin-top: 5px; }
-        .room-badge { 
-            background: #333; 
-            padding: 2px 8px; 
-            border-radius: 4px; 
-            font-size: 0.8rem;
-            margin-left: 5px;
-        }
-
-        /* --- PHẦN 4: NÚT LIÊN HỆ CÓ ICON --- */
-        .contact-section { text-align: center; margin: 50px 0; }
-        .btn-group {
+            border-bottom: 1px solid #444;
+            padding-bottom: 8px;
             display: flex;
-            justify-content: center;
-            gap: 15px;
-            flex-wrap: wrap;
+            justify-content: space-between;
         }
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            text-decoration: none;
-            padding: 12px 25px;
-            border-radius: 50px;
-            font-weight: bold;
-            transition: transform 0.2s;
-            color: white;
-        }
-        .btn i { margin-right: 10px; font-size: 1.2rem; }
-        .btn:hover { transform: translateY(-3px); opacity: 0.9; }
+        .subject-item { margin-bottom: 15px; }
+        .subject-item:last-child { margin-bottom: 0; }
+        
+        .sub-name { font-weight: bold; color: #fff; display: block; margin-bottom: 4px; }
+        .sub-info { font-size: 0.9rem; color: #bbb; display: flex; align-items: center; gap: 10px; }
+        .badge { background: #333; padding: 2px 6px; border-radius: 4px; font-size: 0.8rem; border: 1px solid #444; }
 
-        /* Màu riêng cho từng nút */
-        .btn-fb { background-color: #1877F2; }
-        .btn-gmail { background-color: #EA4335; }
-        .btn-phone { background-color: #34A853; }
+        /* --- CONTACT BUTTONS --- */
+        .btn-group { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; margin-top: 30px; }
+        .btn {
+            display: inline-flex; align-items: center;
+            text-decoration: none; padding: 12px 25px;
+            border-radius: 50px; font-weight: bold; color: white;
+            transition: 0.3s;
+        }
+        .btn i { margin-right: 8px; }
+        .btn:hover { opacity: 0.9; transform: translateY(-2px); }
+        .btn-fb { background: #1877F2; box-shadow: 0 4px 15px rgba(24, 119, 242, 0.4); }
+        .btn-gmail { background: #EA4335; box-shadow: 0 4px 15px rgba(234, 67, 53, 0.4); }
+        .btn-phone { background: #34A853; box-shadow: 0 4px 15px rgba(52, 168, 83, 0.4); }
 
     </style>
 </head>
@@ -146,141 +166,152 @@
             <img src="avatar.jpg" alt="Trần Duy Tuấn" class="avatar"
                  onerror="this.src='https://ui-avatars.com/api/?name=Duy+Tuan&background=bb86fc&color=fff&size=150'">
             <h1>Trần Duy Tuấn</h1>
-            <p>Code là đam mê - Bug là bạn đồng hành</p>
+            <p class="subtitle">Sinh viên Đại học Khoa học Tự nhiên</p>
         </header>
 
         <section>
-            <div style="text-align: center;"><h2>Thông Tin Cá Nhân</h2></div>
-            <table class="personal-info-table">
+            <h2>Hồ Sơ Cá Nhân</h2>
+            <table class="info-table">
                 <tr>
-                    <th><i class="fas fa-user"></i> Họ và tên</th>
-                    <td>Trần Duy Tuấn</td>
+                    <td class="info-label"><i class="fas fa-university"></i> Trường</td>
+                    <td class="info-value">Đại học Khoa học Tự nhiên (HCMUS)</td>
                 </tr>
                 <tr>
-                    <th><i class="fas fa-gamepad"></i> Sở thích</th>
-                    <td>Viết code, Chơi game, Tìm hiểu công nghệ mới</td>
+                    <td class="info-label"><i class="fas fa-users-class"></i> Lớp</td>
+                    <td class="info-value">25CTT6</td>
                 </tr>
                 <tr>
-                    <th><i class="fas fa-bolt"></i> Điểm mạnh</th>
-                    <td>Ham học hỏi, tư duy logic tốt, kiên trì</td>
+                    <td class="info-label"><i class="fas fa-id-card"></i> MSSV</td>
+                    <td class="info-value">25120463</td>
+                </tr>
+                
+                <tr>
+                    <td class="info-label"><i class="fas fa-gamepad"></i> Sở thích</td>
+                    <td class="info-value">Viết code, Chơi game</td>
                 </tr>
                 <tr>
-                    <th><i class="fas fa-exclamation-triangle"></i> Điểm yếu</th>
-                    <td>Hơi lười (đang khắc phục), hay thức khuya</td>
+                    <td class="info-label"><i class="fas fa-bolt"></i> Điểm mạnh</td>
+                    <td class="info-value">Ham học hỏi, tư duy logic tốt</td>
                 </tr>
                 <tr>
-                    <th><i class="fas fa-star"></i> Ước mơ</th>
-                    <td>Trở thành Full-stack Developer lương cao</td>
+                    <td class="info-label"><i class="fas fa-battery-half"></i> Điểm yếu</td>
+                    <td class="info-value">Khá lười (đang khắc phục)</td>
                 </tr>
                 <tr>
-                    <th><i class="fas fa-graduation-cap"></i> Dự định</th>
-                    <td>Tốt nghiệp đúng hạn, đạt GPA loại Giỏi</td>
+                    <td class="info-label"><i class="fas fa-rocket"></i> Ước mơ</td>
+                    <td class="info-value">Dev lương cao</td>
+                </tr>
+                <tr>
+                    <td class="info-label"><i class="fas fa-calendar-check"></i> Dự định</td>
+                    <td class="info-value">Tốt nghiệp đúng hạn</td>
                 </tr>
             </table>
         </section>
 
         <section>
-            <div style="text-align: center;"><h2>Lịch Học Tập</h2></div>
+            <h2>Lịch Học Tập</h2>
             <div class="schedule-grid">
                 <div class="day-card">
-                    <div class="day-header">Thứ 3</div>
+                    <div class="day-header">Thứ 3 <span><i class="fas fa-calendar-day"></i></span></div>
                     <div class="subject-item">
-                        <div class="subject-name">Toán rời rạc (LT)</div>
-                        <div class="subject-detail">
-                            <i class="far fa-clock"></i> Tiết 6 - 9 <br>
-                            <i class="fas fa-map-marker-alt"></i> <span class="room-badge">E303</span>
+                        <span class="sub-name">Toán rời rạc (LT)</span>
+                        <div class="sub-info">
+                            <span><i class="far fa-clock"></i> Tiết 6-9</span>
+                            <span class="badge">E303</span>
                         </div>
                     </div>
                 </div>
 
                 <div class="day-card">
-                    <div class="day-header">Thứ 4</div>
+                    <div class="day-header">Thứ 4 <span><i class="fas fa-calendar-day"></i></span></div>
                     <div class="subject-item">
-                        <div class="subject-name">Vi tích phân 1 (TH)</div>
-                        <div class="subject-detail">
-                            <i class="far fa-clock"></i> Tiết 3.5 - 5 <br>
-                            <i class="fas fa-map-marker-alt"></i> <span class="room-badge">PMT_NDH4.4</span>
+                        <span class="sub-name">Vi tích phân 1 (TH)</span>
+                        <div class="sub-info">
+                            <span><i class="far fa-clock"></i> 3.5-5</span>
+                            <span class="badge">PMT_NDH4.4</span>
                         </div>
                     </div>
-                    <div class="subject-item">
-                        <div class="subject-name">Toán rời rạc (TH)</div>
-                        <div class="subject-detail">
-                            <i class="far fa-clock"></i> Tiết 8.5 - 10 <br>
-                            <i class="fas fa-map-marker-alt"></i> <span class="room-badge">NDH7.8</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="day-card">
-                    <div class="day-header">Thứ 5</div>
-                    <div class="subject-item">
-                        <div class="subject-name">Nhập môn CNTT (LT)</div>
-                        <div class="subject-detail">
-                            <i class="far fa-clock"></i> Tiết 1 - 4 <br>
-                            <i class="fas fa-map-marker-alt"></i> <span class="room-badge">E210</span>
-                        </div>
-                    </div>
-                    <div class="subject-item">
-                        <div class="subject-name">Thể dục 1 (LT)</div>
-                        <div class="subject-detail">
-                            <i class="far fa-clock"></i> Tiết 8 - 10 <br>
-                            <i class="fas fa-map-marker-alt"></i> <span class="room-badge">KHTN1</span>
+                    <div class="subject-item" style="border-top: 1px dashed #444; padding-top: 10px;">
+                        <span class="sub-name">Toán rời rạc (TH)</span>
+                        <div class="sub-info">
+                            <span><i class="far fa-clock"></i> 8.5-10</span>
+                            <span class="badge">NDH7.8</span>
                         </div>
                     </div>
                 </div>
 
                 <div class="day-card">
-                    <div class="day-header">Thứ 6</div>
+                    <div class="day-header">Thứ 5 <span><i class="fas fa-calendar-day"></i></span></div>
                     <div class="subject-item">
-                        <div class="subject-name">Cơ sở lập trình (TH)</div>
-                        <div class="subject-detail">
-                            <i class="far fa-clock"></i> Tiết 1 - 2.5 <br>
-                            <i class="fas fa-map-marker-alt"></i> <span class="room-badge">PMT_D203</span>
+                        <span class="sub-name">Nhập môn CNTT (LT)</span>
+                        <div class="sub-info">
+                            <span><i class="far fa-clock"></i> 1-4</span>
+                            <span class="badge">E210</span>
                         </div>
                     </div>
-                    <div class="subject-item">
-                        <div class="subject-name">Nhập môn CNTT (TH)</div>
-                        <div class="subject-detail">
-                            <i class="far fa-clock"></i> Tiết 3.5 - 5 <br>
-                            <i class="fas fa-map-marker-alt"></i> <span class="room-badge">PMT_D203</span>
-                        </div>
-                    </div>
-                    <div class="subject-item">
-                        <div class="subject-name">Vi tích phân 1 (LT)</div>
-                        <div class="subject-detail">
-                            <i class="far fa-clock"></i> Tiết 6 - 9 <br>
-                            <i class="fas fa-map-marker-alt"></i> <span class="room-badge">E208</span>
+                    <div class="subject-item" style="border-top: 1px dashed #444; padding-top: 10px;">
+                        <span class="sub-name">Thể dục 1 (LT)</span>
+                        <div class="sub-info">
+                            <span><i class="far fa-clock"></i> 8-10</span>
+                            <span class="badge">KHTN1</span>
                         </div>
                     </div>
                 </div>
 
                 <div class="day-card">
-                    <div class="day-header">Thứ 7</div>
+                    <div class="day-header">Thứ 6 <span><i class="fas fa-calendar-day"></i></span></div>
                     <div class="subject-item">
-                        <div class="subject-name">Cơ sở lập trình (LT)</div>
-                        <div class="subject-detail">
-                            <i class="far fa-clock"></i> Tiết 1 - 4 <br>
-                            <i class="fas fa-map-marker-alt"></i> <span class="room-badge">E203</span>
+                        <span class="sub-name">Cơ sở lập trình (TH)</span>
+                        <div class="sub-info">
+                            <span><i class="far fa-clock"></i> 1-2.5</span>
+                            <span class="badge">PMT_D203</span>
+                        </div>
+                    </div>
+                    <div class="subject-item" style="border-top: 1px dashed #444; padding-top: 10px;">
+                        <span class="sub-name">Nhập môn CNTT (TH)</span>
+                        <div class="sub-info">
+                            <span><i class="far fa-clock"></i> 3.5-5</span>
+                            <span class="badge">PMT_D203</span>
+                        </div>
+                    </div>
+                    <div class="subject-item" style="border-top: 1px dashed #444; padding-top: 10px;">
+                        <span class="sub-name">Vi tích phân 1 (LT)</span>
+                        <div class="sub-info">
+                            <span><i class="far fa-clock"></i> 6-9</span>
+                            <span class="badge">E208</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="day-card">
+                    <div class="day-header">Thứ 7 <span><i class="fas fa-calendar-day"></i></span></div>
+                    <div class="subject-item">
+                        <span class="sub-name">Cơ sở lập trình (LT)</span>
+                        <div class="sub-info">
+                            <span><i class="far fa-clock"></i> 1-4</span>
+                            <span class="badge">E203</span>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <footer class="contact-section">
+        <footer style="text-align: center; margin-top: 50px;">
             <h2>Liên Hệ</h2>
             <div class="btn-group">
                 <a href="https://facebook.com" class="btn btn-fb">
                     <i class="fab fa-facebook-f"></i> Facebook
                 </a>
-                <a href="mailto:email@gmail.com" class="btn btn-gmail">
+                <a href="mailto:duytuan@gmail.com" class="btn btn-gmail">
                     <i class="fas fa-envelope"></i> Gmail
                 </a>
                 <a href="tel:0987654321" class="btn btn-phone">
                     <i class="fas fa-phone-alt"></i> 0987 654 321
                 </a>
             </div>
-            <p style="margin-top: 20px; font-size: 0.8rem; color: #555;">© 2023 Designed by TuanDev</p>
+            <p style="margin-top: 20px; font-size: 0.8rem; color: #555;">
+                © 2025 Trần Duy Tuấn - HCMUS Student
+            </p>
         </footer>
     </div>
 
