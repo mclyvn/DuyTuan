@@ -1,20 +1,260 @@
 <!DOCTYPE html>
-<html>
+<html lang="vi">
 <head>
-    <title>Trang web của tôi</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trần Duy Tuấn - Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            margin-top: 50px;
-            background-color: #f0f2f5;
+        /* --- CSS: Phần trang trí giao diện --- */
+        :root {
+            --primary-color: #007bff; /* Màu xanh chủ đạo */
+            --secondary-color: #2c3e50; /* Màu chữ tối */
+            --bg-light: #f8f9fa;
+            --text-grey: #6c757d;
         }
-        h1 { color: #2c3e50; }
-        p { color: #555; }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.6;
+            color: var(--secondary-color);
+            background-color: #fff;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1100px;
+            margin: auto;
+            overflow: hidden;
+            padding: 20px;
+        }
+
+        h1, h2, h3 { font-weight: 700; }
+
+        /* Header/Hero Section */
+        #hero {
+            text-align: center;
+            padding: 60px 20px;
+            background: var(--bg-light);
+        }
+
+        .profile-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%; /* Làm tròn ảnh */
+            object-fit: cover;
+            border: 4px solid var(--primary-color);
+            margin-bottom: 20px;
+        }
+
+        #hero h1 { font-size: 2.5rem; margin-bottom: 10px; }
+        .tagline { font-size: 1.2rem; color: var(--text-grey); margin-bottom: 20px; }
+        .dream-box {
+            background: #e3f2fd;
+            display: inline-block;
+            padding: 10px 20px;
+            border-radius: 20px;
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+
+        /* Section Styling */
+        .section { padding: 50px 0; }
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 40px;
+            text-transform: uppercase;
+            position: relative;
+        }
+        /* Gạch chân dưới tiêu đề */
+        .section-title::after {
+            content: ''; display: block; width: 50px; height: 3px; background: var(--primary-color); margin: 10px auto;
+        }
+
+        /* About Info Grid */
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+        .info-card {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            border-top: 3px solid var(--primary-color);
+        }
+        .info-card h3 { margin-bottom: 15px; display: flex; align-items: center; }
+        .info-card ul { list-style: none; padding-left: 10px; }
+        .info-card li { margin-bottom: 8px; position: relative; padding-left: 20px; }
+        .info-card li::before {
+            content: '•'; color: var(--primary-color); position: absolute; left: 0; font-size: 1.2rem; line-height: 1;
+        }
+        /* Style riêng cho điểm yếu */
+        .weakness-card { border-top-color: #dc3545; }
+        .weakness-card li::before { color: #dc3545; }
+
+        /* Schedule Table */
+        #schedule { background: var(--bg-light); }
+        .schedule-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: #fff;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        .schedule-table th, .schedule-table td {
+            padding: 15px;
+            text-align: center;
+            border-bottom: 1px solid #ddd;
+        }
+        .schedule-table th {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        .highlight-study { background-color: #e3f2fd; font-weight: 500; }
+
+        /* Contact Footer */
+        #contact { background: var(--secondary-color); color: white; text-align: center; padding: 40px 0; }
+        .contact-links { display: flex; justify-content: center; gap: 30px; margin-top: 20px; flex-wrap: wrap; }
+        .contact-btn {
+            text-decoration: none;
+            color: white;
+            padding: 10px 20px;
+            border: 2px solid white;
+            border-radius: 30px;
+            transition: 0.3s;
+        }
+        .contact-btn:hover { background: white; color: var(--secondary-color); }
+        
+        /* Responsive cho mobile */
+        @media (max-width: 768px) {
+             .schedule-table { display: block; overflow-x: auto; }
+        }
     </style>
 </head>
 <body>
-    <h1>Xin chào! Đây là website đầu tiên của tôi trên GitHub.</h1>
-    <p>Được tạo thành công bằng GitHub Pages.</p>
+
+    <header id="hero">
+        <div class="container">
+            <img src="avatar.jpg" alt="Trần Duy Tuấn" class="profile-img" 
+                 onerror="this.src='https://via.placeholder.com/150?text=Tuan+Dev'"> 
+            <h1>Xin chào, tôi là Trần Duy Tuấn</h1>
+            <p class="tagline">Lập trình viên tương lai | Người yêu công nghệ</p>
+            <div class="dream-box">🚀 Ước mơ: Trở thành Dev lương cao</div>
+        </div>
+    </header>
+
+    <section id="about" class="section">
+        <div class="container">
+            <h2 class="section-title">Về bản thân</h2>
+            <div class="info-grid">
+                <div class="info-card">
+                    <h3>🎮 Sở thích</h3>
+                    <ul>
+                        <li>Viết Code (Đam mê chính)</li>
+                        <li>Chơi game giải trí</li>
+                        <li>Đọc tin tức công nghệ</li>
+                    </ul>
+                </div>
+                 <div class="info-card">
+                    <h3>💪 Điểm mạnh</h3>
+                    <ul>
+                        <li>Ham học hỏi kiến thức mới</li>
+                        <li>Có tư duy logic tốt</li>
+                        <li>Khả năng tự nghiên cứu</li>
+                    </ul>
+                </div>
+                 <div class="info-card weakness-card">
+                    <h3>⚠️ Điểm yếu</h3>
+                    <ul>
+                        <li>Khá lười (Đang cố gắng khắc phục!)</li>
+                        <li>Đôi khi thức quá khuya</li>
+                    </ul>
+                </div>
+                 <div class="info-card">
+                    <h3>📅 Dự định tương lai</h3>
+                    <ul>
+                        <li>Tốt nghiệp đúng hạn</li>
+                        <li>Thành thạo ReactJS/NodeJS</li>
+                        <li>Kiếm được công việc thực tập tốt</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="schedule" class="section">
+        <div class="container">
+            <h2 class="section-title">Lịch học tập cá nhân</h2>
+            <p style="text-align: center; margin-bottom: 20px;">(Lịch trình mẫu trong tuần)</p>
+            <table class="schedule-table">
+                <thead>
+                    <tr>
+                        <th>Thời gian</th>
+                        <th>Thứ 2</th>
+                        <th>Thứ 3</th>
+                        <th>Thứ 4</th>
+                        <th>Thứ 5</th>
+                        <th>Thứ 6</th>
+                        <th>Thứ 7</th>
+                        <th>Chủ nhật</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><b>Sáng</b><br>(8h-11h)</td>
+                        <td class="highlight-study">Học Code (Web)</td>
+                        <td>Học trên trường</td>
+                        <td class="highlight-study">Học Code (Thuật toán)</td>
+                        <td>Học trên trường</td>
+                        <td class="highlight-study">Làm Project cá nhân</td>
+                        <td>Ôn tập kiến thức</td>
+                        <td>Ngủ nướng / Cafe</td>
+                    </tr>
+                    <tr>
+                        <td><b>Chiều</b><br>(14h-17h)</td>
+                        <td>Học trên trường</td>
+                        <td class="highlight-study">Tự học tiếng Anh</td>
+                        <td>Học trên trường</td>
+                        <td class="highlight-study">Làm bài tập lớn</td>
+                        <td>Giải trí / Game</td>
+                        <td class="highlight-study">Học nhóm</td>
+                        <td>Dành cho gia đình</td>
+                    </tr>
+                    <tr>
+                        <td><b>Tối</b><br>(20h-23h)</td>
+                        <td>Làm bài tập về nhà</td>
+                        <td>Xem tutorial / Đọc sách</td>
+                        <td>Chơi game / Giải trí</td>
+                        <td class="highlight-study">Code dạo / Fix bug</td>
+                        <td>Tự do</td>
+                        <td>Tổng kết tuần</td>
+                        <td>Chuẩn bị tuần mới</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <footer id="contact">
+        <div class="container">
+            <h2>Liên hệ với Tuấn</h2>
+            <p>Hãy kết nối để cùng nhau học tập và phát triển!</p>
+            <div class="contact-links">
+                <a href="https://facebook.com/username-cua-ban" target="_blank" class="contact-btn">Facebook</a>
+                <a href="mailto:duytuan@gmail.com" class="contact-btn">Gmail</a>
+                <a href="tel:0987654321" class="contact-btn">Điện thoại</a>
+            </div>
+            <p style="margin-top: 30px; font-size: 0.9rem; color: #bdc3c7;">© 2023 Trần Duy Tuấn. Hosted on GitHub Pages.</p>
+        </div>
+    </footer>
+
 </body>
 </html>
